@@ -28,3 +28,13 @@ $(NAME):	$(OBJS_PREFIXED)
 # não sei se precisa das libs pra gerar os objeto kkkkk caraio 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 	$(CC) -c $< -I $(INCLUDE) -o $@ $(LIB)
+
+clean:
+	rm -rf $(OBJS_PREFIXED)
+
+fclean: clean
+	rm -rf $(BIN_PATH)$(NAME)
+
+re: fclean all
+
+.PHONY: make_dirs clean fclean re
