@@ -20,6 +20,11 @@ typedef struct s_args
 	int	number_of_meals;
 }		t_args;
 
+typedef struct s_philosopher
+{
+	t_args *args;
+}		t_philosopher;
+
 // ----------------------------------------------	PROTOTYPES	----------------
 int	ft_atoi(const	char *str);
 int	ft_isdigit(int c);
