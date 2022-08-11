@@ -22,7 +22,8 @@ typedef struct s_args
 
 typedef struct s_philosopher
 {
-	t_args *args;
+	t_args		*args;
+	pthread_t	thread;
 }		t_philosopher;
 
 // ----------------------------------------------	PROTOTYPES	----------------

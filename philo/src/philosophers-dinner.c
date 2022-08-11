@@ -34,25 +34,5 @@ int main(int argc, char *argv[])
 	get_args(argv, &args);
 	philosophers = malloc(args.number_of_philosophers * sizeof(t_philosopher));
 	init_philosophers(&philosophers, &args);
-	printf("number_of_philosophers: %i\n", philosophers[0].args->number_of_philosophers);
-	printf("time_to_die: %i\n", philosophers[0].args->time_to_die);
-	printf("time_to_eat: %i\n", philosophers[0].args->time_to_eat);
-	printf("time_to_sleep: %i\n", philosophers[0].args->time_to_sleep);
-	printf("number of meals: %i\n", philosophers[0].args->number_of_meals);
-	printf("number_of_philosophers: %i\n", philosophers[1].args->number_of_philosophers);
-	printf("time_to_die: %i\n", philosophers[1].args->time_to_die);
-	printf("time_to_eat: %i\n", philosophers[1].args->time_to_eat);
-	printf("time_to_sleep: %i\n", philosophers[1].args->time_to_sleep);
-	printf("number of meals: %i\n", philosophers[1].args->number_of_meals);
-	printf("number_of_philosophers: %i\n", philosophers[2].args->number_of_philosophers);
-	printf("time_to_die: %i\n", philosophers[2].args->time_to_die);
-	printf("time_to_eat: %i\n", philosophers[2].args->time_to_eat);
-	printf("time_to_sleep: %i\n", philosophers[2].args->time_to_sleep);
-	printf("number of meals: %i\n", philosophers[2].args->number_of_meals);
-	args.number_of_meals = 10;
-	printf("number of meals: %i\n", philosophers[0].args->number_of_meals);
-	printf("number of meals: %i\n", philosophers[1].args->number_of_meals);
-	printf("number of meals: %i\n", philosophers[2].args->number_of_meals);
-	// printf("number of meals: %i\n", number_of_meals);
 	return (0);
 }
