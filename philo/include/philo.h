@@ -13,17 +13,18 @@
 // ----------------------------------------------	STRUCTS		----------------
 typedef struct s_args
 {
-	int	number_of_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	number_of_meals;
+	int			number_of_philosophers;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			number_of_meals;
 }		t_args;
 
 typedef struct s_philosopher
 {
+	int			index;
 	t_args		*args;
-	pthread_t	thread;
+	pthread_t	*thread;
 }		t_philosopher;
 
 // ----------------------------------------------	PROTOTYPES	----------------
