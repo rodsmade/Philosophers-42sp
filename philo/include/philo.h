@@ -1,12 +1,27 @@
 #ifndef PHILO_H
 # define PHILO_H
 
-// ---------------------------------------------------------	INCLUDES
-# include <pthread.h>	// pthread_create, pthread_join, pthread_mutex_init etc.
-# include <stdio.h>		// printf
-# include <string.h>	// memset
-# include <stdlib.h>	// malloc, free
-# include <unistd.h>	// write, usleep, 
-# include <sys/time.h>	// gettimeofday
+// ---------------------------------------------	INCLUDES	----------------
+# include <pthread.h> // threads and mutexes functions
+# include <stdio.h> // printf()
+# include <unistd.h> // usleep()
+# include <stdlib.h> // malloc(), free()
+# include <sys/time.h> // gettimeofday()
+# include <stdbool.h> // bool
+# include <string.h> // memset()
+
+// ----------------------------------------------	STRUCTS		----------------
+typedef struct s_args
+{
+	int	number_of_philosophers;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	number_of_meals;
+}		t_args;
+
+// ----------------------------------------------	PROTOTYPES	----------------
+int	ft_atoi(const	char *str);
+int	ft_isdigit(int c);
 
 #endif
