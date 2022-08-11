@@ -37,7 +37,7 @@ $(NAME):	$(OBJS_PREFIXED)
 	$(CC) -I $(INCLUDE) $(OBJS_PREFIXED) -o $(BIN_PATH)$(NAME) $(LIB)
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
-	$(CC) -c $< -I $(INCLUDE) -o $@ $(LIB)
+	$(CC) -c $< -I $(INCLUDE) -o $@
 
 run:	all
 	$(BIN_PATH)$(NAME) $(NUMBER_PHILOS) $(TIME_TO_DIE) $(TIME_TO_EAT) $(TIME_TO_SLEEP) $(NUMBER_MEALS)
