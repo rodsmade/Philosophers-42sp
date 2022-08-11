@@ -25,6 +25,8 @@ typedef struct s_philosopher
 	int			index;
 	t_args		*args;
 	pthread_t	*thread;
+	pthread_mutex_t	*this_fork;
+	pthread_mutex_t	*next_fork;
 }		t_philosopher;
 
 // ----------------------------------------------	PROTOTYPES	----------------

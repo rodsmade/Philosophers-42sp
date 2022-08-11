@@ -43,7 +43,7 @@ run:	all
 	$(BIN_PATH)$(NAME) $(NUMBER_PHILOS) $(TIME_TO_DIE) $(TIME_TO_EAT) $(TIME_TO_SLEEP) $(NUMBER_MEALS)
 
 valgrind:	all
-	valgrind --leak-check=full --show-leak-kinds=all --quiet $(BIN_PATH)$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --quiet 	$(BIN_PATH)$(NAME) $(NUMBER_PHILOS) $(TIME_TO_DIE) $(TIME_TO_EAT) $(TIME_TO_SLEEP) $(NUMBER_MEALS)
 
 clean:
 	rm -rf $(OBJS_PREFIXED)
