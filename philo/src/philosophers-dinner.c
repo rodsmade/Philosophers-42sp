@@ -1,6 +1,5 @@
 #include "philo.h"
 
-
 void *philosopher_routine(void *arg)
 {
 	t_philosopher	*philosopher;
@@ -25,20 +24,6 @@ void	get_args(char *argv[], t_args *args)
 	return ;
 }
 
-void	destroy_philosophers(t_philosopher **philosophers, t_args *args)
-{
-	int	i;
-
-	i = -1;
-	while (++i < args->number_of_philosophers)
-	{
-		free((*philosophers)[i].thread);
-		pthread_mutex_destroy((*philosophers)[i].this_fork);
-		free((*philosophers)[i].this_fork);
-	}
-	free(*philosophers);
-}
-
 void	wait_philosophers(t_philosopher **philosophers, t_args *args)
 {
 	int	i;
@@ -48,36 +33,14 @@ void	wait_philosophers(t_philosopher **philosophers, t_args *args)
 		pthread_join(*((*philosophers)[i].thread), NULL);
 }
 
-void	init_philosophers(t_philosopher **philosophers, t_args *args)
+void	start_threads(t_philosopher **philosophers, t_args *args)
 {
 	int	i;
 
 	i = -1;
 	while (++i < args->number_of_philosophers)
-	{
-		(*philosophers)[i].args = args;
-		(*philosophers)[i].index = i + 1;
-		printf("firosofo %d\n", (*philosophers)[i].index);
-		(*philosophers)[i].thread = (pthread_t *)malloc(sizeof(pthread_t));
-		(*philosophers)[i].this_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	}
-	i = -1;
-	while (++i < args->number_of_philosophers)
-	{
 		pthread_create((*philosophers)[i].thread, NULL, &philosopher_routine, (void *)((*philosophers) + i));
-	}
-	i = -1;
-	while (++i < args->number_of_philosophers)
-		pthread_mutex_init((*philosophers)[i].this_fork, NULL);
-	i = -1;
-	// while (++i < args->number_of_philosophers)
-	// {
-	// 	(*philosophers)[i].next_fork = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t));
-	// 	if (i == (args->number_of_philosophers - 1))
-	// 		(*philosophers)[i].next_fork = &((*philosophers)[0].this_fork);
-	// 	else
-	// 		(*philosophers)[i].next_fork = &((*philosophers)[i + 1].this_fork);
-	// }
+	return ;
 }
 
 int main(int argc, char *argv[])
@@ -91,6 +54,7 @@ int main(int argc, char *argv[])
 	get_args(argv, &args);
 	philosophers = malloc(args.number_of_philosophers * sizeof(t_philosopher));
 	init_philosophers(&philosophers, &args);
+	start_threads(&philosophers, &args);
 	wait_philosophers(&philosophers, &args);
 	destroy_philosophers(&philosophers, &args);
 	return (0);

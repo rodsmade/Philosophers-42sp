@@ -30,7 +30,14 @@ typedef struct s_philosopher
 }		t_philosopher;
 
 // ----------------------------------------------	PROTOTYPES	----------------
-int	ft_atoi(const	char *str);
-int	ft_isdigit(int c);
+// destroy_routine.c
+void	destroy_philosophers(t_philosopher **philosophers, t_args *args);
+
+// init_routine.c
+void	init_philosophers(t_philosopher **philosophers, t_args *args);
+
+// utils.c
+int		ft_atoi(const	char *str);
+
 
 #endif

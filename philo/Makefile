@@ -22,7 +22,9 @@ LIB = -lpthread
 MKDIR =	mkdir -p
 
 SRCS =	philosophers-dinner.c \
-		utils.c
+		utils.c \
+		destroy_routine.c \
+		init_routine.c
 SRCS_PREFIXED = $(addprefix $(SRC_PATH), $(SRCS))
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 OBJS_PREFIXED = $(addprefix $(OBJ_PATH), $(OBJS))
