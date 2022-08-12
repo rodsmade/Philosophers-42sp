@@ -24,7 +24,9 @@ MKDIR =	mkdir -p
 SRCS =	philosophers-dinner.c \
 		utils.c \
 		destroy_routine.c \
-		init_routine.c
+		init_routine.c \
+		get_time.c \
+		get_args.c
 SRCS_PREFIXED = $(addprefix $(SRC_PATH), $(SRCS))
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 OBJS_PREFIXED = $(addprefix $(OBJ_PATH), $(OBJS))
