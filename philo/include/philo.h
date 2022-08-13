@@ -35,6 +35,8 @@ void	destroy_philosophers(t_philosopher **philosophers, t_args *args);
 
 // init_routine.c
 void	init_philosophers(t_philosopher **philosophers, t_args *args);
+void	start_threads(t_philosopher **philosophers, t_args *args);
+void	eat(t_philosopher *philosopher);
 
 // get_args.c
 void	get_args(char *argv[], t_args *args);

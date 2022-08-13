@@ -18,5 +18,7 @@ void	init_philosophers(t_philosopher **philosophers, t_args *args)
 		pthread_mutex_init((*philosophers)[i].this_fork, NULL);
 	i = -1;
 	while (++i < args->number_of_philosophers)
+	{
 		(*philosophers)[i].next_fork = ((*philosophers)[(i + 1) % args->number_of_philosophers].this_fork);
+	}
 }

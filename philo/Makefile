@@ -2,7 +2,7 @@
 # valgrind --leak-check=full --show-leak-kinds=all --quiet ./a.out
 
 # PARAMETERS
-NUMBER_PHILOS = 3
+NUMBER_PHILOS = 10
 TIME_TO_DIE = 600
 TIME_TO_EAT = 200
 TIME_TO_SLEEP = 300
@@ -26,7 +26,9 @@ SRCS =	philosophers-dinner.c \
 		destroy_routine.c \
 		init_routine.c \
 		get_time.c \
-		get_args.c
+		get_args.c\
+		routine.c
+
 SRCS_PREFIXED = $(addprefix $(SRC_PATH), $(SRCS))
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 OBJS_PREFIXED = $(addprefix $(OBJ_PATH), $(OBJS))
