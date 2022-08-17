@@ -1,13 +1,6 @@
 # gcc -g3 philo/philosophers-dinner.c -lpthread
 # valgrind --leak-check=full --show-leak-kinds=all --quiet ./a.out
 
-# PARAMETERS
-NUMBER_PHILOS = 10
-TIME_TO_DIE = 600
-TIME_TO_EAT = 200
-TIME_TO_SLEEP = 300
-NUMBER_MEALS = 5
-
 NAME = philo
 
 SRC_PATH = src/
@@ -22,13 +15,14 @@ LIB = -lpthread
 MKDIR =	mkdir -p
 
 SRCS =	philosophers-dinner.c \
-		utils.c \
-		destroy_routine.c \
-		init_routine.c \
-		get_time.c \
-		get_args.c\
-		routine.c
-
+		args_check.c \
+		aux_eating.c \
+		data_destroy.c \
+		data_init.c \
+		utils_data-race.c \
+		utils_number_handling.c \
+		utils_printing.c \
+		utils_timestamp.c
 SRCS_PREFIXED = $(addprefix $(SRC_PATH), $(SRCS))
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 OBJS_PREFIXED = $(addprefix $(OBJ_PATH), $(OBJS))
@@ -43,13 +37,16 @@ $(NAME):	$(OBJS_PREFIXED)
 	$(CC) -I $(INCLUDE) $(OBJS_PREFIXED) -o $(BIN_PATH)$(NAME) $(LIB)
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
-	$(CC) -c $< -I $(INCLUDE) -o $@
+	$(CC) -c $< -I $(INCLUDE) -o $@ $(LIB)
 
 run:	all
-	$(BIN_PATH)$(NAME) $(NUMBER_PHILOS) $(TIME_TO_DIE) $(TIME_TO_EAT) $(TIME_TO_SLEEP) $(NUMBER_MEALS)
+	$(BIN_PATH)$(NAME)
 
 valgrind:	all
-	valgrind --leak-check=full --show-leak-kinds=all --quiet 	$(BIN_PATH)$(NAME) $(NUMBER_PHILOS) $(TIME_TO_DIE) $(TIME_TO_EAT) $(TIME_TO_SLEEP) $(NUMBER_MEALS)
+	valgrind --leak-check=full --show-leak-kinds=all --quiet $(BIN_PATH)$(NAME)
+
+hellgrind:	all
+	valgrind --quiet --tool=helgrind $(BIN_PATH)$(NAME)
 
 clean:
 	rm -rf $(OBJS_PREFIXED)
