@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:21 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/17 19:53:47 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:11:13 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ void	*dine(void *arg)
 	return (NULL);
 }
 
+int	one_philo(t_philo_data *one_philo)
+{
+	int	ts;
+
+	ts = get_timestamp_ms(one_philo->pgm_started_abs_usec);
+	printf("%s%d %d %s%s\n", LILAC, ts, one_philo->id, FORK, COLOUR_RESET);
+	usleep(one_philo->time_to_die_ms * 1000);
+	ts = get_timestamp_ms(one_philo->pgm_started_abs_usec);
+	printf("%s%d %d %s%s\n", BHMAGENTA, ts, one_philo->id, DIE, COLOUR_RESET);
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	int				i;
@@ -70,6 +82,8 @@ int	main(int argc, char *argv[])
 	if (!passes_arg_check(argc, argv, &common))
 		return (-1);
 	initialise_data(&philos, &common);
+	if (common.nb_of_philos == 1)
+		return (one_philo(&philos[0]));
 	i = -1;
 	while (++i < common.nb_of_philos)
 		pthread_create(philos[i].thread, NULL, &dine, (void *)(philos + i));
