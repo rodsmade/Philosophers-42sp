@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:25 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/17 18:01:49 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:26:28 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,19 @@ bool		passes_arg_check(int argc, char *argv[], t_common_data *common);
 // aux_eating.c
 bool		i_should_die_before_i_wake(t_philo_data *philosopher,
 				time_t action_ms);
-void		unlock_locks(pthread_mutex_t *left_fork,
+void		unlock_the_locks(pthread_mutex_t *left_fork,
 				pthread_mutex_t *right_fork);
 void		decide_sleep_time(t_philo_data *philosopher);
 
 // data_destroy.c
 void		ft_free_ptr(void **ptr);
-void		free_up_memory(t_philo_data **philosophers, int philos_number);
+void		free_up_memory(t_philo_data **philosophers);
 
 // data_init.c
 void		initialise_data(t_philo_data **philos, t_common_data *common);
+
+// solo_dining.c
+int			one_philo(t_philo_data *one_philo);
 
 // utils_data_race.c
 int			must_halt(t_philo_data *philosopher);

@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:48:02 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/17 17:32:18 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/18 10:58:22 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,17 @@ void	wprintf(t_philo_data *philo, char *action)
 	pthread_mutex_lock(&philo->common->printf_mutex);
 	ts = get_timestamp_ms(philo->pgm_started_abs_usec);
 	if (!ft_strcmp(action, FORK) && !must_halt(philo))
-		printf("%s%d %d %s%s\n", LILAC, ts, philo->id, FORK, COLOUR_RESET);
+		printf("%s%d %d %s%s\n", LILAC, ts, philo->id, FORK, RESET);
 	if (!ft_strcmp(action, EAT) && !must_halt(philo))
-		printf("%s%d %d %s%s\n", LRED, ts, philo->id, EAT, COLOUR_RESET);
+		printf("%s%d %d %s%s\n", LRED, ts, philo->id, EAT, RESET);
 	if (!ft_strcmp(action, THINK) && !must_halt(philo))
-		printf("%s%d %d %s%s\n", ORANGE, ts, philo->id, THINK, COLOUR_RESET);
+		printf("%s%d %d %s%s\n", ORANGE, ts, philo->id, THINK, RESET);
 	if (!ft_strcmp(action, SLEEP) && !must_halt(philo))
-		printf("%s%d %d %s%s\n", BBLUE, ts, philo->id, SLEEP, COLOUR_RESET);
+		printf("%s%d %d %s%s\n", BBLUE, ts, philo->id, SLEEP, RESET);
 	if (!ft_strcmp(action, DIE) && philo->common->first_death)
 	{
 		philo->common->first_death = false;
-		printf("%s%d %d %s%s\n", BHMAGENTA, ts, philo->id, DIE, COLOUR_RESET);
+		printf("%s%d %d %s%s\n", BHMAGENTA, ts, philo->id, DIE, RESET);
 	}
 	pthread_mutex_unlock(&philo->common->printf_mutex);
 	return ;

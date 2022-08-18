@@ -19,6 +19,7 @@ SRCS =	philosophers-dinner.c \
 		aux_eating.c \
 		data_destroy.c \
 		data_init.c \
+		solo_dining.c \
 		utils_data-race.c \
 		utils_number_handling.c \
 		utils_printing.c \
@@ -40,13 +41,13 @@ $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 	$(CC) -c $< -I $(INCLUDE) -o $@
 
 run:	all
-	$(BIN_PATH)$(NAME)
+	$(BIN_PATH)$(NAME) $(ARGS)
 
 valgrind:	all
-	valgrind --leak-check=full --show-leak-kinds=all --quiet $(BIN_PATH)$(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --quiet $(BIN_PATH)$(NAME) $(ARGS)
 
 hellgrind:	all
-	valgrind --quiet --tool=helgrind $(BIN_PATH)$(NAME)
+	valgrind --quiet --tool=helgrind $(BIN_PATH)$(NAME) $(ARGS)
 
 clean:
 	rm -rf $(OBJS_PREFIXED)
