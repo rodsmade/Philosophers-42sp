@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:25 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/18 10:26:28 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/19 10:04:45 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,12 @@ void		free_up_memory(t_philo_data **philosophers);
 // data_init.c
 void		initialise_data(t_philo_data **philos, t_common_data *common);
 
+// utils_data_race.c
+bool		read_var(bool *var, pthread_mutex_t *mutex);
+void		write_var(bool *var, pthread_mutex_t *mutex, bool status);
+
 // solo_dining.c
 int			one_philo(t_philo_data *one_philo);
-
-// utils_data_race.c
-int			must_halt(t_philo_data *philosopher);
-void		write_halt(bool *var, pthread_mutex_t *mutex, bool status);
 
 // utils_number_handling.c
 bool		ft_isnumeric_s(char *str);
