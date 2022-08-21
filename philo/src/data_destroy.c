@@ -6,11 +6,21 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:32 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/18 10:25:44 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/20 20:35:52 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+void	unlock_the_locks(pthread_mutex_t *left_fork,
+	pthread_mutex_t *right_fork)
+{
+	if (left_fork)
+		pthread_mutex_unlock(left_fork);
+	if (right_fork)
+		pthread_mutex_unlock(right_fork);
+	return ;
+}
 
 void	ft_free_ptr(void **ptr)
 {

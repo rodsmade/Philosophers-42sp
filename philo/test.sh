@@ -4,7 +4,7 @@
 make -C philo && clear
 exe=./bin/philo
 
-tests=1
+tests=10
 
 x=1
 time=0.1

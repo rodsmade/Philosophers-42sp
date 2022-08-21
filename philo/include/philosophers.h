@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:25 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/19 10:04:45 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 09:07:17 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_common_data
 	bool			infinite_dinner;
 	bool			halt_execution;
 	bool			first_death;
+	time_t			pgm_started_abs_usec;
 	pthread_mutex_t	printf_mutex;
 	pthread_mutex_t	halt_mutex;
 }		t_common_data;
@@ -56,7 +57,6 @@ typedef struct s_philo_data
 	int					nb_of_meals;
 	bool				infinite_dinner;
 	bool				*halt;
-	time_t				pgm_started_abs_usec;
 	time_t				last_meal_abs_usec;
 	pthread_t			*thread;
 	pthread_mutex_t		*this_fork;
@@ -69,14 +69,9 @@ typedef struct s_philo_data
 // args_check.c
 bool		passes_arg_check(int argc, char *argv[], t_common_data *common);
 
-// aux_eating.c
-bool		i_should_die_before_i_wake(t_philo_data *philosopher,
-				time_t action_ms);
+// data_destroy.c
 void		unlock_the_locks(pthread_mutex_t *left_fork,
 				pthread_mutex_t *right_fork);
-void		decide_sleep_time(t_philo_data *philosopher);
-
-// data_destroy.c
 void		ft_free_ptr(void **ptr);
 void		free_up_memory(t_philo_data **philosophers);
 
@@ -96,9 +91,10 @@ long int	ft_atoli(const char *nptr);
 
 // utils_printing.c
 void		wprintf(t_philo_data *philo, char *action);
+bool		must_halt(t_philo_data *philo);
 
 // utils_timestamp.c
 void		get_curr_time_abs_usec(time_t *current_time);
-int			get_timestamp_ms(unsigned long int pgm_started_abs_usec);
+int			time_elapsed_ms(unsigned long int baseline_abs_usec);
 
 #endif

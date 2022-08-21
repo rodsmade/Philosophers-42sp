@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:11:01 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/18 11:17:44 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/20 21:27:27 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	copy_args(char *argv[], t_common_data *common)
 	}
 	else
 	{
-		common->nb_of_meals = 0;
+		common->nb_of_meals = -42;
 		common->infinite_dinner = true;
 	}
 	return ;

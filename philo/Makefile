@@ -16,7 +16,6 @@ MKDIR =	mkdir -p
 
 SRCS =	philosophers-dinner.c \
 		args_check.c \
-		aux_eating.c \
 		data_destroy.c \
 		data_init.c \
 		solo_dining.c \
