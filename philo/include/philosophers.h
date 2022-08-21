@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:25 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 09:07:17 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 10:17:44 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,18 @@ void		unlock_the_locks(pthread_mutex_t *left_fork,
 				pthread_mutex_t *right_fork);
 void		ft_free_ptr(void **ptr);
 void		free_up_memory(t_philo_data **philosophers);
+void		join_threads(t_philo_data **philos);
 
 // data_init.c
 void		initialise_data(t_philo_data **philos, t_common_data *common);
+void		create_threads(t_philo_data **philos);
+
+// dining_ancillary_funcs.c
+int			all_philos_ate_enough(t_philo_data **philos, t_common_data *common);
+bool		dinner_must_continue(t_philo_data *philo);
+
+// dining.c
+void		*dine(void *arg);
 
 // utils_data_race.c
 bool		read_var(bool *var, pthread_mutex_t *mutex);

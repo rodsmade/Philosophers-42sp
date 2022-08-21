@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:32 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/20 20:35:52 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 10:10:18 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,17 @@ void	free_up_memory(t_philo_data **philosophers)
 	pthread_mutex_destroy(&((*philosophers)[0].common->printf_mutex));
 	pthread_mutex_destroy(&((*philosophers)[0].common->halt_mutex));
 	ft_free_ptr((void *)philosophers);
+	return ;
+}
+
+void	join_threads(t_philo_data **philos)
+{
+	int	i;
+	int	nb_of_philos;
+
+	nb_of_philos = (*philos)[0].common->nb_of_philos;
+	i = -1;
+	while (++i < nb_of_philos)
+		pthread_join(*(*philos)[i].thread, NULL);
 	return ;
 }

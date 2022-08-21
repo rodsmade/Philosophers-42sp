@@ -6,13 +6,13 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:40 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 09:28:42 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 10:19:26 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	init_common_data(t_common_data *common)
+static void	init_common_data(t_common_data *common)
 {
 	common->halt_execution = false;
 	common->first_death = true;
@@ -22,7 +22,7 @@ void	init_common_data(t_common_data *common)
 	return ;
 }
 
-void	assign_forks(t_philo_data **philos, int philos_number)
+static void	assign_forks(t_philo_data **philos, int philos_number)
 {
 	int	i;
 
@@ -37,7 +37,7 @@ void	assign_forks(t_philo_data **philos, int philos_number)
 	return ;
 }
 
-void	init_philos_array(t_philo_data **philos, t_common_data *common)
+static void	init_philos_array(t_philo_data **philos, t_common_data *common)
 {
 	int	i;
 
@@ -68,11 +68,21 @@ void	init_philos_array(t_philo_data **philos, t_common_data *common)
 void	initialise_data(t_philo_data **philos, t_common_data *common)
 {
 	init_common_data(common);
-	// printf("time to die: %i\n",common->time_to_die_ms);
-	// printf("time to eat: %i\n",common->time_to_eat_ms);
-	// printf("time to sleep: %i\n",common->time_to_sleep_ms);
-	// printf("nb of philos: %i\n",common->nb_of_philos);
-	// printf("nb of meals: %i\n",common->nb_of_meals);
 	init_philos_array(philos, common);
+	return ;
+}
+
+void	create_threads(t_philo_data **philos)
+{
+	int	i;
+	int	nb_of_philos;
+
+	nb_of_philos = (*philos)[0].common->nb_of_philos;
+	i = -1;
+	while (++i < nb_of_philos)
+		pthread_create((*philos)[i].thread,
+			NULL,
+			&dine,
+			(void *)((*philos) + i));
 	return ;
 }

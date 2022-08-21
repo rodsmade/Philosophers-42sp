@@ -18,11 +18,13 @@ SRCS =	philosophers-dinner.c \
 		args_check.c \
 		data_destroy.c \
 		data_init.c \
+		dining_ancillary_funcs.c \
+		dining.c \
 		solo_dining.c \
-		utils_data-race.c \
+		utils_data_race.c \
 		utils_number_handling.c \
 		utils_printing.c \
-		utils_timestamp.c
+		utils_time.c
 SRCS_PREFIXED = $(addprefix $(SRC_PATH), $(SRCS))
 OBJS = $(patsubst %.c, %.o, $(SRCS))
 OBJS_PREFIXED = $(addprefix $(OBJ_PATH), $(OBJS))

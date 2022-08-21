@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:48:02 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 09:07:17 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 10:19:06 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 bool	must_halt(t_philo_data *philo)
 {
 	return (read_var(&philo->common->halt_execution,
-				&philo->common->halt_mutex));
+			&philo->common->halt_mutex));
 }
 
 void	wprintf(t_philo_data *philo, char *action)

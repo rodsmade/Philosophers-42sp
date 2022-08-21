@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_timestamp.c                                  :+:      :+:    :+:   */
+/*   utils_time.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:48:02 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 09:35:18 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 10:18:59 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_curr_time_abs_usec(time_t *current_time)
 	if (gettimeofday(tv, NULL) != 0)
 	{
 		printf("%s❌ Error getting timestamp.%s\n",
-		BHMAGENTA, RESET);
+			BHMAGENTA, RESET);
 		*current_time = 0;
 	}
 	else
