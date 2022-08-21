@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:48:02 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 12:24:32 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 12:30:07 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	wprintf(t_philo_data *philo, char *action)
 	if (!ft_strcmp(action, FORK) && !must_halt(philo))
 		printf("%s%d %d %s%s\n", LILAC, tstamp_ms, philo->id, FORK, RESET);
 	if (!ft_strcmp(action, EAT) && !must_halt(philo))
-		printf("%s%d %d %s%s\n", LRED, tstamp_ms, philo->id, EAT, RESET);
+		printf("%s%d %d %s%s\n", LYELLOW, tstamp_ms, philo->id, EAT, RESET);
 	if (!ft_strcmp(action, THINK) && !must_halt(philo))
 		printf("%s%d %d %s%s\n", ORANGE, tstamp_ms, philo->id, THINK, RESET);
 	if (!ft_strcmp(action, SLEEP) && !must_halt(philo))
