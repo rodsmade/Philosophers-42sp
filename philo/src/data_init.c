@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:40 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 10:19:26 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 14:45:17 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	init_common_data(t_common_data *common)
 {
-	common->halt_execution = false;
-	common->first_death = true;
+	common->halt_execution = FALSE;
+	common->first_death = TRUE;
 	get_curr_time_abs_usec(&(common->pgm_started_abs_usec));
 	pthread_mutex_init(&common->printf_mutex, NULL);
 	pthread_mutex_init(&common->halt_mutex, NULL);
@@ -26,6 +26,9 @@ static void	assign_forks(t_philo_data **philos, int philos_number)
 {
 	int	i;
 
+	i = -1;
+	while (++i < philos_number)
+		pthread_mutex_init((*philos)[i].this_fork, NULL);
 	i = -1;
 	while (++i < philos_number - 1)
 	{
@@ -55,12 +58,13 @@ static void	init_philos_array(t_philo_data **philos, t_common_data *common)
 		(*philos)[i].halt = &common->halt_execution;
 		(*philos)[i].last_meal_abs_usec = common->pgm_started_abs_usec;
 		(*philos)[i].this_fork = malloc(sizeof(pthread_mutex_t));
+		(*philos)[i].last_meal_mutex = malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init((*philos)[i].last_meal_mutex, NULL);
+		(*philos)[i].meals_had_mutex = malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init((*philos)[i].meals_had_mutex, NULL);
 		(*philos)[i].thread = malloc(sizeof(pthread_t));
 		(*philos)[i].common = common;
 	}
-	i = -1;
-	while (++i < common->nb_of_philos)
-		pthread_mutex_init((*philos)[i].this_fork, NULL);
 	assign_forks(philos, common->nb_of_philos);
 	return ;
 }

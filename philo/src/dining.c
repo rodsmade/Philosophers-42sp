@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 10:11:26 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 12:08:53 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:01:48 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@ void	eat(t_philo_data *philo)
 	wprintf(philo, FORK);
 	pthread_mutex_lock(philo->righthand_fork);
 	wprintf(philo, FORK);
-	get_curr_time_abs_usec(&philo->last_meal_abs_usec);
+	write_last_meal_abs_us(philo);
 	wprintf(philo, EAT);
 	usleep(philo->time_to_eat_ms * 1000);
-	philo->meals_had++;
+	write_var(&philo->meals_had,
+		philo->meals_had_mutex,
+		read_var(&philo->meals_had, philo->meals_had_mutex) + 1);
 	return (unlock_the_locks(philo->lefthand_fork, philo->righthand_fork));
 }
 

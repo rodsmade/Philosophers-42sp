@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:48:02 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/16 10:48:32 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:03:08 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_isdigit(int c)
 	return (0);
 }
 
-bool	ft_isnumeric_s(char *str)
+int	ft_isnumeric_s(char *str)
 {
 	int	i;
 

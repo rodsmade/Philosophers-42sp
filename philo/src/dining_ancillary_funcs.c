@@ -6,33 +6,33 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 10:15:31 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 12:24:42 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 15:03:00 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-bool	must_halt(t_philo_data *philo)
+int	must_halt(t_philo_data *philo)
 {
-	return (read_var(&philo->common->halt_execution,
+	return (read_var((int *) &philo->common->halt_execution,
 			&philo->common->halt_mutex));
 }
 
-bool	dinner_must_continue(t_philo_data *philo)
+int	dinner_must_continue(t_philo_data *philo)
 {
 	if (philo->common->infinite_dinner)
 	{
 		if (!must_halt(philo))
-			return (true);
+			return (TRUE);
 		else
-			return (false);
+			return (FALSE);
 	}
 	else
 	{
 		if (philo->meals_had < philo->common->nb_of_meals && !must_halt(philo))
-			return (true);
+			return (TRUE);
 		else
-			return (false);
+			return (FALSE);
 	}
 }
 
@@ -45,7 +45,8 @@ int	all_philos_ate_enough(t_philo_data **philos, t_common_data *common)
 	i = -1;
 	while (++i < common->nb_of_philos)
 	{
-		if ((*philos)[i].meals_had >= common->nb_of_meals)
+		if (read_var(&(*philos)[i].meals_had, (*philos)[i].meals_had_mutex)
+			>= common->nb_of_meals)
 			full_philos++;
 	}
 	return (full_philos == common->nb_of_philos);

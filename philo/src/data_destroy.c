@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:32 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 10:10:18 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 14:44:51 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,12 @@ void	free_up_memory(t_philo_data **philosophers)
 	while (++i < (*philosophers)[0].common->nb_of_philos)
 	{
 		pthread_mutex_destroy((*philosophers)[i].this_fork);
-		ft_free_ptr((void *)&(*philosophers)[i].thread);
 		ft_free_ptr((void *)&(*philosophers)[i].this_fork);
+		pthread_mutex_destroy((*philosophers)[i].last_meal_mutex);
+		ft_free_ptr((void *)&(*philosophers)[i].last_meal_mutex);
+		pthread_mutex_destroy((*philosophers)[i].meals_had_mutex);
+		ft_free_ptr((void *)&(*philosophers)[i].meals_had_mutex);
+		ft_free_ptr((void *)&(*philosophers)[i].thread);
 	}
 	pthread_mutex_destroy(&((*philosophers)[0].common->printf_mutex));
 	pthread_mutex_destroy(&((*philosophers)[0].common->halt_mutex));
