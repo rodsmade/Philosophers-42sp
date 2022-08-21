@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 10:11:26 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 10:12:35 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 12:08:53 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	*dine(void *arg)
 	t_philo_data	*philo;
 
 	philo = (t_philo_data *)arg;
+	if (philo->common->nb_of_philos == 1)
+		return (dine_solo(philo));
 	while (dinner_must_continue(philo))
 	{
 		usleep(50);

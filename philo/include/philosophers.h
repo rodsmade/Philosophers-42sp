@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:25 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 10:17:44 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 12:13:05 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool		read_var(bool *var, pthread_mutex_t *mutex);
 void		write_var(bool *var, pthread_mutex_t *mutex, bool status);
 
 // solo_dining.c
-int			one_philo(t_philo_data *one_philo);
+void		*dine_solo(t_philo_data *one_philo);
 
 // utils_number_handling.c
 bool		ft_isnumeric_s(char *str);

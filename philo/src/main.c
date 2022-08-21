@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers-dinner.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:21 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 10:17:04 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 12:14:30 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	main(int argc, char *argv[])
 	if (!passes_arg_check(argc, argv, &common))
 		return (-1);
 	initialise_data(&philos, &common);
-	if (common.nb_of_philos == 1)
-		return (one_philo(&philos[0]));
 	create_threads(&philos);
 	monitor_threads(&philos, &common);
 	join_threads(&philos);
@@ -43,7 +41,7 @@ void	monitor_threads(t_philo_data **philos, t_common_data *common)
 		philo = (*philos)[i];
 		if (!common->infinite_dinner && all_philos_ate_enough(philos, common))
 			break ;
-		if (time_elapsed_ms(philo.last_meal_abs_usec) > common->time_to_die_ms
+		if (time_elapsed_ms(philo.last_meal_abs_usec) >= common->time_to_die_ms
 			&& dinner_must_continue(&philo))
 		{
 			write_var(&common->halt_execution, &common->halt_mutex, true);

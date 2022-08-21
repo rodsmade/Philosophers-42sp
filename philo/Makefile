@@ -14,7 +14,7 @@ LIB = -lpthread
 # BASH COMMANDS
 MKDIR =	mkdir -p
 
-SRCS =	philosophers-dinner.c \
+SRCS =	main.c \
 		args_check.c \
 		data_destroy.c \
 		data_init.c \
