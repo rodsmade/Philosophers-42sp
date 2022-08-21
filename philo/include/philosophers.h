@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:25 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 14:44:12 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 19:14:14 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_philo_data
 	int					time_to_sleep_ms;
 	int					time_to_die_ms;
 	int					nb_of_meals;
-	int					infinite_dinner;
 	int					*halt;
 	time_t				last_meal_abs_usec;
 	pthread_t			*thread;

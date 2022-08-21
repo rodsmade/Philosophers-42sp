@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 10:15:31 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 15:03:00 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 19:22:38 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	dinner_must_continue(t_philo_data *philo)
 	}
 	else
 	{
-		if (philo->meals_had < philo->common->nb_of_meals && !must_halt(philo))
+		if (philo->meals_had <= philo->common->nb_of_meals && !must_halt(philo))
 			return (TRUE);
 		else
 			return (FALSE);

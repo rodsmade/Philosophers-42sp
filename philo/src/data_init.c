@@ -6,7 +6,7 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 17:10:40 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 14:45:17 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 20:05:33 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,24 @@ static void	assign_forks(t_philo_data **philos, int philos_number)
 
 	i = -1;
 	while (++i < philos_number)
-		pthread_mutex_init((*philos)[i].this_fork, NULL);
-	i = -1;
-	while (++i < philos_number - 1)
 	{
-		(*philos)[i].lefthand_fork = (*philos)[i].this_fork;
-		(*philos)[i].righthand_fork = (*philos)[i + 1].this_fork;
+		if (i % 2)
+		{
+			(*philos)[i].lefthand_fork = (*philos)[i].this_fork;
+			(*philos)[i].righthand_fork = (*philos)[(i + 1) % philos_number]
+				.this_fork;
+		}
+		else
+		{
+			(*philos)[i].lefthand_fork = (*philos)[(i + 1) % philos_number]
+				.this_fork;
+			(*philos)[i].righthand_fork = (*philos)[i].this_fork;
+		}
 	}
-	(*philos)[i].lefthand_fork = (*philos)[0].this_fork;
-	(*philos)[i].righthand_fork = (*philos)[i].this_fork;
 	return ;
 }
 
-static void	init_philos_array(t_philo_data **philos, t_common_data *common)
+static void	init_philos(t_philo_data **philos, t_common_data *common)
 {
 	int	i;
 
@@ -54,10 +59,10 @@ static void	init_philos_array(t_philo_data **philos, t_common_data *common)
 		(*philos)[i].time_to_sleep_ms = common->time_to_sleep_ms;
 		(*philos)[i].time_to_die_ms = common->time_to_die_ms;
 		(*philos)[i].nb_of_meals = common->nb_of_meals;
-		(*philos)[i].infinite_dinner = common->infinite_dinner;
 		(*philos)[i].halt = &common->halt_execution;
 		(*philos)[i].last_meal_abs_usec = common->pgm_started_abs_usec;
 		(*philos)[i].this_fork = malloc(sizeof(pthread_mutex_t));
+		pthread_mutex_init((*philos)[i].this_fork, NULL);
 		(*philos)[i].last_meal_mutex = malloc(sizeof(pthread_mutex_t));
 		pthread_mutex_init((*philos)[i].last_meal_mutex, NULL);
 		(*philos)[i].meals_had_mutex = malloc(sizeof(pthread_mutex_t));
@@ -65,14 +70,14 @@ static void	init_philos_array(t_philo_data **philos, t_common_data *common)
 		(*philos)[i].thread = malloc(sizeof(pthread_t));
 		(*philos)[i].common = common;
 	}
-	assign_forks(philos, common->nb_of_philos);
 	return ;
 }
 
 void	initialise_data(t_philo_data **philos, t_common_data *common)
 {
 	init_common_data(common);
-	init_philos_array(philos, common);
+	init_philos(philos, common);
+	assign_forks(philos, common->nb_of_philos);
 	return ;
 }
 
