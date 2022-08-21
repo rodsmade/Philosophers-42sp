@@ -6,11 +6,17 @@
 /*   By: roaraujo <roaraujo@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 10:15:31 by roaraujo          #+#    #+#             */
-/*   Updated: 2022/08/21 10:15:58 by roaraujo         ###   ########.fr       */
+/*   Updated: 2022/08/21 12:24:42 by roaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+bool	must_halt(t_philo_data *philo)
+{
+	return (read_var(&philo->common->halt_execution,
+			&philo->common->halt_mutex));
+}
 
 bool	dinner_must_continue(t_philo_data *philo)
 {
