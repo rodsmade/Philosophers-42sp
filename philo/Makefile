@@ -1,12 +1,10 @@
-# gcc -g3 philo/philosophers-dinner.c -lpthread
-# valgrind --leak-check=full --show-leak-kinds=all --quiet ./a.out
-
-NAME = philo
-
+# PATH VARIABLES
 SRC_PATH = src/
 OBJ_PATH = obj/
 BIN_PATH = ./bin/
 INCLUDE = include/
+
+NAME = $(BIN_PATH)philo
 
 CC = gcc -Wall -Wextra -Werror -g3
 LIB = -lpthread
@@ -36,25 +34,25 @@ make_dirs:
 	@$(MKDIR) $(BIN_PATH)
 
 $(NAME):	$(OBJS_PREFIXED)
-	$(CC) -I $(INCLUDE) $(OBJS_PREFIXED) -o $(BIN_PATH)$(NAME) $(LIB)
+	$(CC) -I $(INCLUDE) $(OBJS_PREFIXED) -o $(NAME) $(LIB)
 
 $(OBJ_PATH)%.o:	$(SRC_PATH)%.c
 	$(CC) -c $< -I $(INCLUDE) -o $@
 
 run:	all
-	$(BIN_PATH)$(NAME) $(ARGS)
+	$(NAME) $(ARGS)
 
 valgrind:	all
-	valgrind --leak-check=full --show-leak-kinds=all --quiet $(BIN_PATH)$(NAME) $(ARGS)
+	valgrind --leak-check=full --show-leak-kinds=all --quiet $(NAME) $(ARGS)
 
 hellgrind:	all
-	valgrind --quiet --tool=helgrind $(BIN_PATH)$(NAME) $(ARGS)
+	valgrind --quiet --tool=helgrind $(NAME) $(ARGS)
 
 clean:
 	rm -rf $(OBJS_PREFIXED)
 
 fclean: clean
-	rm -rf $(BIN_PATH)$(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
