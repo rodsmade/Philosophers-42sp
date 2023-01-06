@@ -30,7 +30,8 @@ Shall simulate a dinner of `2` philosophers, each of them with a lifespan of `50
 
 The simulation shall produce a log that narrates the activity during dinnertime:
 
-```
+``` shell
+>$ ./philo 2 500 200 100 1
 0 1 has taken a fork
 0 1 has taken a fork
 0 1 is eating
@@ -41,6 +42,7 @@ The simulation shall produce a log that narrates the activity during dinnertime:
 300 1 is thinking
 400 2 is sleeping
 500 2 is thinking
+>$ 
 ```
 
 The leading number in every log line represents a timestamp in miliseconds relative to the program starting time.
