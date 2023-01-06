@@ -1,6 +1,9 @@
 # Philosophers-42sp
 A study on Multithreading in C!
 
+![image](https://user-images.githubusercontent.com/49699403/210902076-f5092b2b-fccf-43b7-b8f4-570443beb406.png)
+
+
 ## The dining philosophers problem
 Originally formulated in 1965 by Edsger Dijkstra, the dining philosophers problem is an example problem often used in concurrent algorithm design to illustrate synchronization issues and techniques for resolving them.
 
